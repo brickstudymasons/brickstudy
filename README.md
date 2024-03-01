@@ -1,13 +1,17 @@
 # brickstudy
 
+<p align="center">
+    <img style="width: 35%; height: 35%" src="image011.png">
+</p>
+
 brickstudy is an open source collaborative python library for analysis of data related to pediatric hematology patients, including and especially the neuroradiology data.
 
-Brick will include a main code library where the user can access the code.
+brickstudy will include a main code library where the user can access the code.
 
 The library is under construction.
 
 Program files
-The core functions of brick are in the folder brick.
+The core functions of brickstudy are in the folder brickstudy.
 
 Our guide to notebooks is under construction. To look around keep in mind the following distinction on folders:
 
@@ -19,7 +23,7 @@ open_work:
 
 This folder contains experimental work by core members of the BRICK team (Drs Candace Makeda Moore, Melanie Bruinooge and Aida Gebremeksel)
 Data sets
-The notebooks are configured to run on various datasets. Contact Dr. Melanie Bruinooge( 📫 m.bruinooge@erasmusmc.nl) to discuss any questions on data configuration for your datasets.
+The notebooks are configured to run on various datasets. Contact Drs. Melanie Bruinooge( 📫 m.bruinooge@erasmusmc.nl) to discuss any questions on data configuration for your datasets.
 
 A standardized dataset is under development.
 
@@ -35,7 +39,7 @@ Installation for all supported platforms
 Installation with Anaconda/conda and/or mamba are the preffered methods. They are covered in the "Getting Started" section. If you wish to install with pip:
 
 Create and activate a virtual environment (see developer setup section for more details)
-Install brick package by running pip install brick.
+Install brickstudy package by running pip install brickstudy.
 Getting Started
 with the reccomended Conda setup
 How to get the notebooks running? Assuming the raw data set and metadata is available. Note for non-conda installations see next sections.
@@ -71,5 +75,5 @@ conda create -n blank python=3.10
 Install within the blank environment
 
   conda activate blank
-  conda install -c conda-forge -c brick brick jupyter ipympl
+  conda install -c conda-forge -c brickstudy brickstudy jupyter ipympl
 Open a notebook (we use Jupyter notebooks) in researcher_interface folder and interactively run the cells. You can use the command jupyter notebook to open a browser window on the folders of notebooks. Note, if you run with an installed library import appropriately. The basic_emg_analysis notebook can be used to understand how to use the package.
