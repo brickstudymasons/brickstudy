@@ -22,7 +22,7 @@ from datetime import datetime, date
 
 import pandas as pd
 import SimpleITK as sitk
-
+from functools import reduce
 import numpy
 from datetime import datetime, date
 import pydicom as dicom
@@ -32,7 +32,26 @@ import skimage.io as io
 from pydicom.multival import MultiValue
 from pydicom.sequence import Sequence
 
-
+def csv_my_excel(excel_book_name, keyname):
+    """
+    this function takes a multisheet excel and reads in the sheets
+    into a csv
+    """
+    # Read Excel file with multiple sheets
+    xls = pd.ExcelFile(excel_book_name)
+    # Get the list of sheet names
+    sheet_names = xls.sheet_names
+    sheet_number= len(sheet_names)
+    excel_file = pd.read_excel(excel_book_name, sheet_name= sheet_names)
+    sheet_list = []
+    for sheet_name in sheet_names:
+        sheet = excel_file[sheet_name]
+        sheet_list.append(sheet)
+    df_merged = reduce(lambda  left,right: pd.merge(left,right,on=keyname,
+                                            how='outer'), sheet_list)
+    df_merged.dropna(how='all', axis=1, inplace=True)
+    return df_merged
+    
 
 class PydicomDicomReader:
     """Class for reading DICOM metadata with pydicom."""
