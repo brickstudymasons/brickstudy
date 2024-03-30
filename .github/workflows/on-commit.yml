@@ -1,0 +1,74 @@
+name: Sanity
+on: [push]
+
+jobs:
+  SanityOnMulti:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.10', '3.11']
+        include:
+          - python-version: '3.10'
+            tox-python: "py310"
+          - python-version: '3.11'
+            tox-python: 'py311'
+          - os: windows-latest
+            python: .venv/Scripts/python.exe
+          - os: ubuntu-latest
+            python: .venv/bin/python
+          - os: macos-latest
+            python: .venv/bin/python
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: s-weigand/setup-conda@v1
+        with:
+          conda-channels: conda-forge
+          python-version: ${{ matrix.python-version }}
+      - run: python3 -m venv .venv
+      - run: ${{ matrix.python }} -m pip install tox
+      - run: >
+          ${{ matrix.python }} -m tox -e ${{ matrix.tox-python }}
+          -- tests/test_multi.py
+
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: s-weigand/setup-conda@v1
+        with:
+          conda-channels: conda-forge
+          python-version: '3.11'
+      - run: python3 -m venv .venv
+      - run: .venv/bin/python -m pip install wheel  
+      - run: .venv/bin/python -m pip install pycodestyle "pytest<8.1"
+      - run: .venv/bin/python setup.py lint
+
+  Sphinx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: s-weigand/setup-conda@v1
+        with:
+          conda-channels: conda-forge
+          python-version: '3.10'
+      - run: python3 -m venv .venv
+      - run: .venv/bin/python -m pip install wheel
+      - run: .venv/bin/python setup.py bdist_wheel
+      - run: .venv/bin/python -m pip install ./dist/*.whl
+      - run: .venv/bin/python -m pip install sphinx 
+      - run: .venv/bin/python setup.py apidoc
+      - run: .venv/bin/python setup.py build_sphinx -W
+      - name: Publish Docs to Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build/sphinx/html  
