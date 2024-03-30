@@ -1,0 +1,18 @@
+brickstudy package
+==================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   brickstudy.foundation
+
+Module contents
+---------------
+
+.. automodule:: brickstudy
+   :members:
+   :undoc-members:
+   :show-inheritance:

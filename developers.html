@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Developer’s Guide &#8212; brickstudy 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Medical Professional Documentation" href="medical-professionals.html" />
+    <link rel="prev" title="brickstudy.foundation module" href="brickstudy.foundation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="developer-s-guide">
+<h1>Developer’s Guide<a class="headerlink" href="#developer-s-guide" title="Link to this heading">¶</a></h1>
+<section id="sending-your-work">
+<h2>Sending Your Work<a class="headerlink" href="#sending-your-work" title="Link to this heading">¶</a></h2>
+<p>We accept pull requests made through GitHub. As is usual,
+we request that the changes be rebased
+on the branch they are to be integrated into (usually the develop brannch).
+We also request that you pre-lint and test anything you send.</p>
+<p>We’ll try our best to attribute
+your work to you, however, you need to release your work under
+compatible license for us to be able to use it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We don’t use <cite>git-merge</cite> command, and if your submission has merge
+commits, we’ll have to remove them.  This means that in such case
+commit hashes will be different from those in your original
+submission.</p>
+</div>
+</section>
+<section id="setting-up-development-environment">
+<h2>Setting Up Development Environment<a class="headerlink" href="#setting-up-development-environment" title="Link to this heading">¶</a></h2>
+<section id="the-way-we-do-it">
+<h3>The Way We Do It<a class="headerlink" href="#the-way-we-do-it" title="Link to this heading">¶</a></h3>
+<p>If you want to develop using Anaconda Python, you would:</p>
+<p>Follow the instructions on the readme.</p>
+<p>This will create a virtual environment, build <cite>conda</cite> package, install
+it and then add development dependencies to what was installed.</p>
+</section>
+<section id="the-traditional-ways">
+<h3>The Traditional Ways<a class="headerlink" href="#the-traditional-ways" title="Link to this heading">¶</a></h3>
+<p>Regardless of the downsides of this approach, we try to support more
+common ways to work with Python projects.  It’s a common practice to
+“install” a project during development by either using <cite>pip install
+–editable</cite> command, or by using <cite>conda</cite> environment files.</p>
+<p>We provide limited support for approaches not based on Anaconda right
+now.  For instance, if you want to work on the project using <cite>pip</cite>,
+you could try it, and contact us: <a class="reference external" href="mailto:brainspinner&#37;&#52;&#48;gmail&#46;com">brainspinner<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>Due to the complexity of environments involved we reccomend
+using <cite>mamba</cite> a drop in substitute for conda.</p>
+<p>The environment files are generated using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>./environment.yml
+</pre></div>
+</div>
+<p>or
+.. code-block:: bash</p>
+<blockquote>
+<div><p>mamba env create -f ./environment.yml</p>
+</div></blockquote>
+</section>
+<section id="rationale">
+<h3>Rationale<a class="headerlink" href="#rationale" title="Link to this heading">¶</a></h3>
+<p>There are several problems with the traditional way Python programmers are
+taught to organize their development environment.  The way a typical
+Python project is developed, it is designed to support a single
+version of Python, rarely multiple Python distributions or operating
+systems. We are working to support multiple Pythons. Pending. But for
+now we are doing what is simple and fast.</p>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<p>You may now locally run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>or you can call the testing from the setup file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>setup.py<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>Under the hood, this runs unittest and pytest tests.</p>
+<p>Additionally, you can automatically test
+all notebooks by switching into
+the mriland environment (or any appropriate
+environment with nbmake) and running the following command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>--nbmake<span class="w"> </span>&lt;&lt;directory_of_notebooks_you_want_to_test&gt;&gt;
+</pre></div>
+</div>
+<section id="style-guide-for-python-code">
+<h3>Style Guide for Python Code<a class="headerlink" href="#style-guide-for-python-code" title="Link to this heading">¶</a></h3>
+<p>We have linting!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>./setup.py<span class="w"> </span>lint
+</pre></div>
+</div>
+</section>
+<section id="continuous-integration">
+<h3>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading">¶</a></h3>
+<p>This project has CI setup that uses GitHub Actions
+platform.</p>
+</section>
+<section id="style">
+<h3>Style<a class="headerlink" href="#style" title="Link to this heading">¶</a></h3>
+<p>When it comes to style, beyond linting we are trying
+to conform, more or less, to the Google Python style
+<a class="reference external" href="https://google.github.io/styleguide/pyguide.html">https://google.github.io/styleguide/pyguide.html</a></p>
+</section>
+<section id="vendor">
+<h3>Vendor<a class="headerlink" href="#vendor" title="Link to this heading">¶</a></h3>
+<p>We have a module with variuos submodules called vendor.
+This is a place for certain open source code from third party libraries.
+Due to the lack of version control and releases on much
+scientific software we release code from these libraries with our own.
+We include the original licenses, and code that has been
+modified to fit the standard style of Python or whichever
+language the original code was written in. These are not complete
+versions of the libraries, rather relevant functions.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">brickstudy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">brickstudy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sending-your-work">Sending Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-development-environment">Setting Up Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="medical-professionals.html">Medical Professional Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="brickstudy.foundation.html" title="previous chapter">brickstudy.foundation module</a></li>
+      <li>Next: <a href="medical-professionals.html" title="next chapter">Medical Professional Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, c.moore@erasmusmc.nl.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/developers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
