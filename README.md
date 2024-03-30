@@ -49,7 +49,7 @@ that versions 3.10 or 3.11 (depending on the release) are supported.
 | ![p](etc/python-logo.png)   | Supported | Unknown   | Unknown   |
 | ![a](etc/anaconda-logo.png) | Supported | Supported | Supported |
 
-Installation for all supported platforms
+
 Installation with Anaconda/conda and/or mamba are the preffered methods. They are covered in the "Getting Started" section. 
 
 ### Getting started
