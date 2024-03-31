@@ -33,6 +33,41 @@ import skimage.io as io
 # from pydicom.sequence import Sequence
 
 
+def compare_sheets(excel_book_name):
+    """
+    This function reads a multisheet excel
+    and prints back some infor you want to know before merging
+    """
+    # Read Excel file with multiple sheets
+    xls = pd.ExcelFile(excel_book_name)
+    # Get the list of sheet names
+    sheet_names = xls.sheet_names
+    # read in the excel
+    excel_file = pd.read_excel(excel_book_name, sheet_name=sheet_names)
+    sheet_row_numbers = []
+    sheets = []
+    for sheet_name in sheet_names:
+        sheet = excel_file[sheet_name]
+        sheets.append((sheet_name, sheet))
+        sheet_row_numbers.append(sheet.shape[0])
+    first_one = sheet_row_numbers[0]
+    counter = 1
+    for element in sheet_row_numbers[1:]:
+        if first_one == element:
+            counter += 1
+    if counter == len(sheet_row_numbers):
+        print("Your sheets all have the same number of rows")
+    else:
+        print("Your sheets doe not all have the same number of rows")
+        print("Row numbers are", sheet_row_numbers)
+    for sheety in sheets:
+        if sheety[1].isna().sum().sum() > 0:
+            print("You have some nans in", sheety[0])
+            print(sheety[1].isna().sum())
+
+    return None
+
+
 def find_my_key(excel_book_name):
     """
     This function reads a multi-sheet excel file's sheets
