@@ -6,7 +6,8 @@ Licensed under the Apache License, version 2.0. See LICENSE for details.
 
 This file contains methods to deal with DICOMS.
 
-Note the package has an optional pydicom dependancy, without it this module
+Note the package will have an optional pydicom dependancy,
+ without it this module
 has functions related to dicoms that will not work.
 
 """
@@ -33,16 +34,37 @@ import skimage.io as io
 # from pydicom.sequence import Sequence
 
 
+def find_my_key(excel_book_name):
+    # read Excel file with multiple sheets
+    xls = pd.ExcelFile(excel_book_name)
+    # get the list of sheet names
+    sheet_names = xls.sheet_names
+    excel_file = pd.read_excel(excel_book_name, sheet_name=sheet_names)
+    sheet_list = []
+    for sheet_name in sheet_names:
+        sheet = excel_file[sheet_name]
+        sheet_list.append(sheet)
+    set_columns = []
+    for listi in sheet_list:
+        setcolumns_set = set(listi.columns)
+        set_columns.append(setcolumns_set)
+    result_set = set_columns[0]
+    for set_specific in set_columns[1:]:
+        common_columns = result_set.intersection(set_specific)
+        common_columns = list(common_columns)
+
+    return common_columns
+
+
 def csv_my_excel(excel_book_name, keyname):
     """
     this function takes a multisheet excel and reads in the sheets
     into a csv
     """
-    # Read Excel file with multiple sheets
+    # read Excel file with multiple sheets
     xls = pd.ExcelFile(excel_book_name)
-    # Get the list of sheet names
+    # get the list of sheet names
     sheet_names = xls.sheet_names
-    sheet_number = len(sheet_names)
     excel_file = pd.read_excel(excel_book_name, sheet_name=sheet_names)
     sheet_list = []
     for sheet_name in sheet_names:
@@ -52,14 +74,6 @@ def csv_my_excel(excel_book_name, keyname):
         left, right, on=keyname, how='outer'), sheet_list)
     df_merged.dropna(how='all', axis=1, inplace=True)
     return df_merged
-
-
-def report_ranges(dataframe):
-    """
-    this function is a dummy to prove testing which should soon be deleted
-    """
-    sum = dataframe['ranges'].sum()
-    return sum
 
 
 # class PydicomDicomReader:
