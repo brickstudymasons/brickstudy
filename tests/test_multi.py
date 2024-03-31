@@ -19,23 +19,22 @@ from unittest import TestCase, main
 from sklearn.linear_model import LinearRegression
 
 # foundation
-from brickstudy.foundation import report_ranges
+from brickstudy.foundation import find_my_key
 
 
 
 sample_tab_csv1 = "sample_synthetic_data/showable_standard.csv"
+
+sample_excel = "sample_synthetic_data/example_excel.xlsx"
 # where? 
 
 
 class TestTabDataCleaning(unittest.TestCase):
 
-    def test_report_ranges(self):
-        data = pd.read_csv(sample_tab_csv1)
-        data['ranges'] = data['gm_vol']
-        sum = report_ranges(data)
-        oc = data['gm_vol'].sum()
 
-        self.assertEqual(sum, oc)
+    def test_find_my_key(self):
+        common_col = find_my_key(sample_excel)
+        self.assertEqual(['row_key'], common_col)
     
 
 
