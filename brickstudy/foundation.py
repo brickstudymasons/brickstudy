@@ -3,10 +3,9 @@
 """
 Copyright 2024 Rotterdam University Medical Center.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
-
 This file contains methods to deal with DICOMS.
 Note the package will have an optional pydicom dependancy,
- \without it this module
+without it this module
 has functions related to dicoms that will not work.
 
 """
@@ -35,8 +34,8 @@ import skimage.io as io
 
 def find_my_key(excel_book_name):
     """
-    This function reads a multi-sheet excel file's sheets 
-    into pandas objects, and finds the common columns 
+    This function reads a multi-sheet excel file's sheets
+    into pandas objects, and finds the common columns
     """
     # read Excel file with multiple sheets
     xls = pd.ExcelFile(excel_book_name)
