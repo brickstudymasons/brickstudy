@@ -574,6 +574,7 @@ if __name__ == '__main__':
         install_requires=[
             'pyxdf',
             'pandas',
+            'openpyxl',
             'scipy',
             'matplotlib',
             'scikit-learn',
