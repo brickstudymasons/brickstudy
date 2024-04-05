@@ -1,0 +1,14 @@
+#  environment document
+
+name: rland2
+channels:
+  - conda-forge
+  
+dependencies:
+  - r-recommended
+  - r-irkernel
+  - Jupyter
+  - r-devtools
+  - r-readxl
+  - r-writexl
+  - r-dplyr
