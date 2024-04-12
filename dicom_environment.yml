@@ -1,0 +1,13 @@
+#  environment document
+
+name: layer_dicom
+channels:
+  - conda-forge
+  
+dependencies:
+  - dcm2bids
+  - dcm2niix
+
+
+
+
