@@ -1,9 +1,11 @@
-find /z/MRIs -type d -iwholename '/*/*/*/*/*/*/*' -exec sh -c 'dcm2bids_helper -d
-find /z/MRIs -type d -iwholename '/*/*/*/*/*/*/*/*' -exec sh -c FILE={} 'echo $FILE' +
+#!/usr/bin/bash
 
-for f in $(find /z/MRIs -type d -iwholename '/*/*/*/*/*/*/*/*') ;
+set -ex
+
+for f in $(find /z/MRIs -type d -iwholename '/*/*/*/*/*/*/*/*')
 do
   # make names based on $f
-  out=...
-  dcm2bids_helper -d $ -o /z/output/$out
+  out=/z/output/${f#"/z/MRIs/"}
+  mkdir -p "$out"
+  dcm2bids_helper -d $f -o "$out"
 done
