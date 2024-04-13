@@ -92,3 +92,4 @@ conda-pkg/meta.yaml
 !tests/sample_synthetic_data/*.csv
 secret_data/*
 secret_data/
+tmp_dcm2bids/*
