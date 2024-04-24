@@ -22,7 +22,7 @@ from datetime import datetime, date
 import pandas as pd
 import SimpleITK as sitk
 from functools import reduce
-import numpy
+import numpy as np
 from datetime import datetime, date
 # import pydicom as dicom
 import pandas as pd
@@ -117,8 +117,8 @@ def csv_my_excel(excel_book_name, keyname):
 def show_neg_value_patients(df, cutoff_number=0):
     """this function returns dataframes,
     one below and including, and one above a cutoff"""
-    below_rows = df[~(df.select_dtypes('number') >= cutoff_number).all(1)]
-    above_rows = df[(df.select_dtypes('number') >= cutoff_number).all(1)]
+    below_rows = df[~(df.select_dtypes(np.number) >= cutoff_number).all(1)]
+    above_rows = df[(df.select_dtypes(np.number) >= cutoff_number).all(1)]
     return above_rows, below_rows
 
 
