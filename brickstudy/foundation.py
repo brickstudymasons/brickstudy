@@ -119,7 +119,7 @@ def show_neg_value_patients(df, cutoff_number=0):
     one below and including, and one above a cutoff"""
     below_rows = df[~(df.select_dtypes('number') >= cutoff_number).all(1)]
     above_rows = df[(df.select_dtypes('number') >= cutoff_number).all(1)]
-    return above_rows, below_rows"
+    return above_rows, below_rows
 
 
 # class PydicomDicomReader:
