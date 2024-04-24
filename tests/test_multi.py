@@ -21,13 +21,13 @@ from sklearn.linear_model import LinearRegression
 
 # foundation
 from brickstudy.foundation import find_my_key
+from brickstudy.foundation import show_neg_value_patients
 
 
 
 sample_tab_csv1 = "sample_synthetic_data/showable_standard.csv"
 
 sample_excel = "sample_synthetic_data/example_excel.xlsx"
-# where? 
 
 
 class TestTabDataCleaning(unittest.TestCase):
@@ -36,6 +36,13 @@ class TestTabDataCleaning(unittest.TestCase):
     def test_find_my_key(self):
         common_col = find_my_key(sample_excel)
         self.assertEqual(['row_key'], common_col)
+
+    def test_show_neg_value_patients(self):
+        sample_tab_csv1_read = pd.read_csv(sample_tab_csv1)
+        returned = show_neg_value_patients(sample_tab_csv1_read, 0)
+        self.assertEqual( len(returned[0]) + len(returned[1]), len(returned[0]))
+
+
     
 
 
