@@ -114,6 +114,14 @@ def csv_my_excel(excel_book_name, keyname):
     return df_merged
 
 
+def show_neg_value_patients(df, cutoff_number=0):
+    """this function returns dataframes,
+    one below and including, and one above a cutoff"""
+    below_rows = df[~(df.select_dtypes('number') >= cutoff_number).all(1)]
+    above_rows = df[(df.select_dtypes('number') >= cutoff_number).all(1)]
+    return above_rows, below_rows"
+
+
 # class PydicomDicomReader:
 #     """Class for reading DICOM metadata with pydicom."""
 
