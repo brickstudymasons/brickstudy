@@ -135,10 +135,9 @@ class NiftiSliceViewer:
 
     def __init__(self, volume_str, figsize=(10, 10)):
         self.nifti = nib.load(volume_str)
-        volume = self.nifti.get_fdata()
-        self.volume = volume
+        self.volume = self.nifti.get_fdata()
         self.figsize = figsize
-        self.v = [np.min(volume), np.max(volume)]
+        self.v = [np.min(self.volume), np.max(self.volume)]
         self.widgets = importlib.import_module('ipywidgets')
 
         self.widgets.interact(self.transpose, view=self.widgets.Dropdown(
@@ -146,12 +145,21 @@ class NiftiSliceViewer:
             value='axial',
             description='View:',
             disabled=False))
-
+        
+        
+        # self.widgets.interact(self.plot_slice, c=self.widgets.IntSlider(
+        #         min=0,
+        #         max=300,
+        #         step=10,
+        #         continuous_update=True,
+        #         description='Image High Value:'
+        #     ))
     def transpose(self, view):
         # transpose the image to orient according to the slice plane selection
         orient = {"sag": [1, 2, 0], "cor": [2, 0, 1], "axial": [0, 1, 2]}
         self.vol = np.transpose(self.volume, orient[view])
         maxZ = self.vol.shape[2] - 1
+        # maxC = 300
 
         self.widgets.interact(
             self.plot_slice,
@@ -161,7 +169,8 @@ class NiftiSliceViewer:
                 step=1,
                 continuous_update=True,
                 description='Image Slice:'
-            )
+            ),
+            
         )
 
     def plot_slice(self, z):
@@ -171,7 +180,7 @@ class NiftiSliceViewer:
             self.vol[:, :, z],
             cmap="gray",
             vmin=0,
-            vmax=255,
+            vmax= self.v[1],
         )
 
 # class PydicomDicomReader:
