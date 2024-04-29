@@ -20,6 +20,10 @@ from abc import ABC, abstractmethod
 from datetime import datetime, date
 
 import pandas as pd
+import numpy as np
+import matplotlib.pylot as plt
+import ipywidgets as widget
+import importlib
 import SimpleITK as sitk
 from functools import reduce
 import numpy as np
@@ -117,10 +121,57 @@ def csv_my_excel(excel_book_name, keyname):
 def show_neg_value_patients(df, cutoff_number=0):
     """this function returns dataframes,
     one below and including, and one above a cutoff"""
-    below_rows = df[~(df.select_dtypes(np.number) >= cutoff_number).all(1)]
-    above_rows = df[(df.select_dtypes(np.number) >= cutoff_number).all(1)]
+    below_rows = df[~(df.select_dtypes('number') >= cutoff_number).all(1)]
+    above_rows = df[(df.select_dtypes('number') >= cutoff_number).all(1)]
     return above_rows, below_rows
 
+
+class NiftiSliceViewer:
+    """
+    A class to examine slices of MRIs, which are in Nifti Format
+
+    """
+
+    def __init__(self, volume_str, figsize=(10, 10)):
+        self.nifti = nib.load(volume_str)
+        volume = self.nifti.get_fdata()
+        self.volume = volume
+        self.figsize = figsize
+        self.v = [np.min(volume), np.max(volume)]
+        self.widgets = importlib.import_module('ipywidgets')
+
+        self.widgets.interact(self.transpose, view=self.widgets.Dropdown(
+            options=['axial', 'sag', 'cor'],
+            value='axial',
+            description='View:',
+            disabled=False))
+
+    def transpose(self, view):
+        # transpose the image to orient according to the slice plane selection
+        orient = {"sag": [1, 2, 0], "cor": [2, 0, 1], "axial": [0, 1, 2]}
+        self.vol = np.transpose(self.volume, orient[view])
+        maxZ = self.vol.shape[2] - 1
+
+        self.widgets.interact(
+            self.plot_slice,
+            z=self.widgets.IntSlider(
+                min=0,
+                max=maxZ,
+                step=1,
+                continuous_update=True,
+                description='Image Slice:'
+            )
+        )
+
+    def plot_slice(self, z):
+        # plot slice for plane which will match the widget intput
+        self.fig = plt.figure(figsize=self.figsize)
+        plt.imshow(
+            self.vol[:, :, z],
+            cmap="gray",
+            vmin=0,
+            vmax=255,
+        )
 
 # class PydicomDicomReader:
 #     """Class for reading DICOM metadata with pydicom."""
