@@ -21,7 +21,8 @@ from datetime import datetime, date
 
 import pandas as pd
 import numpy as np
-import matplotlib.pylot as plt
+import matplotlib.pyplot as plt
+import nibabel as nib
 import ipywidgets as widget
 import importlib
 import SimpleITK as sitk
