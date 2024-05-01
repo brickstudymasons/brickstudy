@@ -1,6 +1,6 @@
 #  environment document
 
-name: rland2
+name: rland3
 channels:
   - conda-forge
   
@@ -9,6 +9,9 @@ dependencies:
   - r-irkernel
   - Jupyter
   - r-devtools
+  - r-readxl
+  - r-writexl
+  - r-dplyr
   - r-readxl
   - r-writexl
   - r-dplyr
