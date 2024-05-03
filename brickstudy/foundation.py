@@ -145,8 +145,7 @@ class NiftiSliceViewer:
             value='axial',
             description='View:',
             disabled=False))
-        
-        
+
         # self.widgets.interact(self.plot_slice, c=self.widgets.IntSlider(
         #         min=0,
         #         max=300,
@@ -154,6 +153,7 @@ class NiftiSliceViewer:
         #         continuous_update=True,
         #         description='Image High Value:'
         #     ))
+
     def transpose(self, view):
         # transpose the image to orient according to the slice plane selection
         orient = {"sag": [1, 2, 0], "cor": [2, 0, 1], "axial": [0, 1, 2]}
@@ -170,7 +170,6 @@ class NiftiSliceViewer:
                 continuous_update=True,
                 description='Image Slice:'
             ),
-            
         )
 
     def plot_slice(self, z):
@@ -180,7 +179,7 @@ class NiftiSliceViewer:
             self.vol[:, :, z],
             cmap="gray",
             vmin=0,
-            vmax= self.v[1],
+            vmax=self.v[1],
         )
 
 # class PydicomDicomReader:
