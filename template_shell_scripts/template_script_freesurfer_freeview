@@ -1,0 +1,18 @@
+#!/usr/local/fsl/bin/bash
+set -xe
+export FREESURFER_HOME=/usr/local/freesurfer
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+
+export SUBJECTS_DIR=/mnt/data/rr1/real_run_one
+
+cd $SUBJECTS_DIR
+freeview -v \
+	BRICK-001/mri/T1.mgz \
+       	BRICK-001/mri/wm.mgz \
+       	BRICK-001/mri/brainmask.mgz \
+       	BRICK-001/mri/aseg.mgz:colormap=lut:opacity=0.2 \
+       	-f \
+       	BRICK-001/surf/lh.white:edgecolor=blue \
+       	BRICK-001/surf/lh.pial:edgecolor=red \
+	BRICK-001/surf/lh.white:edgecolor=blue \
+	BRICK-001/surf/lh.pial:edgecolor=red

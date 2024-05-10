@@ -181,7 +181,6 @@ class NiftiSliceViewer:
             vmin=0,
             vmax=self.v[1],
         )
-
 # class PydicomDicomReader:
 #     """Class for reading DICOM metadata with pydicom."""
 

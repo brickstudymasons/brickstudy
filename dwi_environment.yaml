@@ -1,0 +1,21 @@
+# dwi environment
+
+
+name: dwit
+channels:
+  - conda-forge
+  
+dependencies:
+  - dipy=1.7.0
+  - fury=0.7.1
+  - jupyter
+  - jupyterlab
+  - matplotlib=3.5.3
+  - nilearn=0.7.0
+  - osfclient=0.0.5
+  - python>=3.10
+  #- pybids=0.14.0
+  
+
+
+

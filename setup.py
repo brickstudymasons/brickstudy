@@ -572,6 +572,8 @@ if __name__ == '__main__':
         },
         test_suite='setup.my_test_suite',
         install_requires=[
+            # scikit-image doesn't seem to support newer versions of NumPy
+            'numpy<2.0.0',
             'pyxdf',
             'pandas',
             'openpyxl',
