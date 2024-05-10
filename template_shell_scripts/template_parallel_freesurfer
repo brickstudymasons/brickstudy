@@ -1,0 +1,11 @@
+#!/usr/local/fsl/bin/bash
+set -xe
+export FREESURFER_HOME=/usr/local/freesurfer
+SETUP="$FREESURFER_HOME/SetUpFreeSurfer.sh"
+ls -lah $SETUP
+source $SETUP
+export SUBJECTS_DIR=/subjects/all
+mkdir -p $SUBJECTS_DIR
+rm -rf $SUBJECTS_DIR/*
+# # find /mnt/data/surfers -type f -name '*.nii.gz' -exec sh -c 'INPUT=$0 ; OUTPUT=$(echo $INPUT | cut -d/ -f5) ; echo $INPUT $OUTPUT' {} \;
+find /mnt/data/surfers -type f -name '*.nii.gz' -exec sh -c 'INPUT=$0 ; OUTPUT=$(echo $INPUT | cut -d/ -f5) ; recon-all -i $INPUT -s $OUTPUT -all &' {} \;

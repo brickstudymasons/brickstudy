@@ -3,7 +3,7 @@ Brickmasons notes (for maintainers of library):
 Brain data pipeline:
 
 	We use Freesurfer version 6.0. 
-	More details coming
+	We left some template shell scripts to run things in paralell in this repo. 
 
 Release steps:
 	Releases are made with a normal procedure, but with extra care as there is a notebook filter.
