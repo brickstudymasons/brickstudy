@@ -40,6 +40,23 @@ This file contains methods to deal with DICOMS.
 Note the package will have an optional pydicom dependancy,
 without it this module
 has functions related to dicoms that will not work.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="brickstudy.foundation.NiftiSliceViewer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">NiftiSliceViewer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.NiftiSliceViewer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class to examine slices of MRIs, which are in Nifti Format</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="brickstudy.foundation.NiftiSliceViewer.plot_slice">
+<span class="sig-name descname"><span class="pre">plot_slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.NiftiSliceViewer.plot_slice" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="brickstudy.foundation.NiftiSliceViewer.transpose">
+<span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.NiftiSliceViewer.transpose" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="brickstudy.foundation.compare_sheets">
 <span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">compare_sheets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_book_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.compare_sheets" title="Link to this definition">¶</a></dt>
@@ -59,6 +76,13 @@ into a csv</p>
 <span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">find_my_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_book_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.find_my_key" title="Link to this definition">¶</a></dt>
 <dd><p>This function reads a multi-sheet excel file’s sheets
 into pandas objects, and finds the common columns</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="brickstudy.foundation.show_neg_value_patients">
+<span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">show_neg_value_patients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.show_neg_value_patients" title="Link to this definition">¶</a></dt>
+<dd><p>this function returns dataframes,
+one below and including, and one above a cutoff</p>
 </dd></dl>
 
 </section>
