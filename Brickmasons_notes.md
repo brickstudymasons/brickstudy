@@ -2,6 +2,8 @@ Brickmasons notes (for maintainers of library):
 
 Brain data pipeline:
 
+	To convert dicoms2 nifti we use anexisting package. 
+	Run the scripts in the dicom2nifti folder in the given environment (dbuild from icom_environment.yml)
 	We use Freesurfer version 6.0. 
 	More details coming
 
