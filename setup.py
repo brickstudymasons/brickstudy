@@ -548,8 +548,6 @@ class BdistConda(BDistEgg):
             sys.stderr.write('Built package: {}'.format(rc[0]))
 
 
-
-
 if __name__ == '__main__':
     setup(
         name=name,
