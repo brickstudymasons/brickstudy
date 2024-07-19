@@ -4,14 +4,14 @@
     <img style="width: 35%; height: 35%" src="image011.png">
 </p>
 
-brickstudy is an open source collaborative python library for analysis of data related to pediatric hematology patients, including and especially the neuroradiology data.
+brickstudy is an open source collaborative python library for analysis of data related to sickle cell disease patients, including and especially the neuroradiology data.
 
 brickstudy will include a main code library where the user can access the code.
 
 The library is under construction.
 
-Program files
-The core functions of brickstudy are in the folder brickstudy.
+Program Files
+The core functions of brickstudy are in the folder "brickstudy".
 
 Our guide to notebooks is under construction. To look around keep in mind the following distinction on folders:
 
@@ -27,7 +27,7 @@ The notebooks are configured to run on various datasets. Contact Dr. Melanie Bru
 
 notebooks/teaching:
 
-This folder contains teaching materials for learning the most basic basics of handeling data.
+This folder contains teaching materials for learning the most basic basics of handling data.
 
 A standardized dataset is under development.
 
