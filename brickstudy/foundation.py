@@ -29,7 +29,7 @@ import SimpleITK as sitk
 from functools import reduce
 import numpy as np
 from datetime import datetime, date
-# import pydicom as dicom
+import pydicom as pydicom
 import pandas as pd
 import openpyxl
 import skimage.io as io
@@ -181,6 +181,20 @@ class NiftiSliceViewer:
             vmin=0,
             vmax=self.v[1],
         )
+
+
+def check_dimensions_of_voxel(image_string):
+    """
+    This function if given a dicom string will return the dimensions as
+    a tuple, and print a message about them
+    
+    """
+    dcm_read = pydicom.dcmread(image_string)
+    voxel_width = dcm_read.PixelSpacing[0] 
+    voxel_height = dcm_read.PixelSpacing[1]
+    slice_thickness = dcm_read.SliceThickness
+    print("Voxel dimensions are:",  voxel_width, voxel_height, slice_thickness)
+    return (voxel_width, voxel_height, slice_thickness)
 # class PydicomDicomReader:
 #     """Class for reading DICOM metadata with pydicom."""
 
