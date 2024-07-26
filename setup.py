@@ -592,6 +592,7 @@ if __name__ == '__main__':
             'SimpleITK',
             'seaborn',
             'nibabel',
+            'pydicom',
             'ipywidgets',
             # Unfortunately, in later versions this library decided to cap
             # its version requirements for Pillow, which breaks installation
