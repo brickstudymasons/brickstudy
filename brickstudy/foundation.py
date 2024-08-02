@@ -195,6 +195,66 @@ def check_dimensions_of_voxel(image_string):
     slice_thickness = dcm_read.SliceThickness
     print("Voxel dimensions are:",  voxel_width, voxel_height, slice_thickness)
     return (voxel_width, voxel_height, slice_thickness)
+
+
+def map_for_commas(df):
+    """
+    checks if there are any string values with commas in a pandas DataFrame,
+    and return a datadrame with booleans, then a dataframe to show the values
+
+    :param df: The DataFrame to check.
+    :type df: :class:`~pd.dateframe`
+    :return: tuple of two dataframes one with bools for check, one with values
+    :rtype: :class: tuple
+    """
+    # apply a function to each element in the DataFrame to check for commas
+    bool_frame = df.applymap(lambda x: isinstance(x, str) and ',' in x)
+    bool_frame_applied = df[bool_frame]
+    return bool_frame, bool_frame_applied
+
+
+def map_for_commas_if_all_strings(df):
+    """
+    checks if there are any  values with commas in a pandas DataFrame,
+    and returns a datadrame with bools, then a dataframe which shows values
+
+    :param df: The DataFrame to check.
+    :type df: :class:`~pd.dateframe`
+    :return: tuple of two dataframes based on with bools for check
+    :rtype: :class: tuple
+
+    """
+    df = df.applymap(str)
+    # Apply a function to each element in the DataFrame to check for commas
+    bool_frame = df.applymap(lambda x: isinstance(x, str) and ',' in x)
+    bool_frame_applied = df[bool_frame]
+    return bool_frame, bool_frame_applied
+
+
+def check_and_print_commas(df):
+    """
+    converts all values in a DataFrame to strings,
+    then check if any values have commas.
+    If a value has a comma, print the location of the value.
+    Returns number of comma values
+
+    """
+    # convert all values to strings
+    df = df.applymap(str)
+
+    counter = 0
+    # check for commas and print the location
+    for row_index, row in df.iterrows():
+        for col_index, value in row.items():
+            if ',' in value:
+                print(
+                    f"Alert:comma row{row_index}, column{col_index}: {value}"
+                )
+                counter += 1
+
+    return counter
+
+
 # class PydicomDicomReader:
 #     """Class for reading DICOM metadata with pydicom."""
 
