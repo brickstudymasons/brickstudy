@@ -1,5 +1,5 @@
 for f in $(find /home/fsluser/pcasl_festival/json_holder_1/ -type f -name '*.nii.gz') ; do
-	out=pcasl_anat_output/$(basename $f)good
+	out=pcasl_anat_output/$(basename $f)good2
 	stripped_basename=$(basename $f)
 	stripped_basename=${stripped_basename%.nii.gz}
 	anat=/home/fsluser/home_holder/$stripped_basename.anat
