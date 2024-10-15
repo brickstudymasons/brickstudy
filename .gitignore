@@ -93,3 +93,4 @@ conda-pkg/meta.yaml
 secret_data/*
 secret_data/
 tmp_dcm2bids/*
+.Rproj.user
