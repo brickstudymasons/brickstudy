@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>brickstudy.foundation module &#8212; brickstudy 0.0.1 documentation</title>
+    <title>brickstudy.foundation module &#8212; brickstudy 0.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=7c24204d" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
-    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/documentation_options.js?v=7026087e"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -59,6 +59,22 @@ has functions related to dicoms that will not work.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="brickstudy.foundation.check_and_print_commas">
+<span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">check_and_print_commas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.check_and_print_commas" title="Link to this definition">¶</a></dt>
+<dd><p>converts all values in a DataFrame to strings,
+then check if any values have commas.
+If a value has a comma, print the location of the value.
+Returns number of comma values</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="brickstudy.foundation.check_dimensions_of_voxel">
+<span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">check_dimensions_of_voxel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.check_dimensions_of_voxel" title="Link to this definition">¶</a></dt>
+<dd><p>This function if given a dicom string will return the dimensions as
+a tuple, and print a message about them</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="brickstudy.foundation.compare_sheets">
 <span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">compare_sheets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_book_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.compare_sheets" title="Link to this definition">¶</a></dt>
 <dd><p>This function reads a multisheet excel
@@ -77,6 +93,52 @@ into a csv</p>
 <span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">find_my_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_book_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.find_my_key" title="Link to this definition">¶</a></dt>
 <dd><p>This function reads a multi-sheet excel file’s sheets
 into pandas objects, and finds the common columns</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="brickstudy.foundation.map_for_commas">
+<span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">map_for_commas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.map_for_commas" title="Link to this definition">¶</a></dt>
+<dd><p>checks if there are any string values with commas in a pandas DataFrame,
+and return a datadrame with booleans, then a dataframe to show the values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dateframe</span></code>) – The DataFrame to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of two dataframes one with bools for check, one with values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="field-list simple">
+<dt class="field-odd">class<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="brickstudy.foundation.map_for_commas_if_all_strings">
+<span class="sig-prename descclassname"><span class="pre">brickstudy.foundation.</span></span><span class="sig-name descname"><span class="pre">map_for_commas_if_all_strings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brickstudy.foundation.map_for_commas_if_all_strings" title="Link to this definition">¶</a></dt>
+<dd><p>checks if there are any  values with commas in a pandas DataFrame,
+and returns a datadrame with bools, then a dataframe which shows values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dateframe</span></code>) – The DataFrame to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of two dataframes based on with bools for check</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="field-list simple">
+<dt class="field-odd">class<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
