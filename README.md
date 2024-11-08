@@ -23,7 +23,7 @@ notebooks/experi:
 
 This folder contains experimental work by core members of the BRICK team  Candace Makeda Moore,MD,  Melanie Bruinooge, MD and Aida Gebremeksel, MD)
 Data sets:
-The notebooks are configured to run on various datasets. Contact Melanie Bruinooge, MD( 📫 m.bruinooge@erasmusmc.nl) to discuss any questions on data configuration for your datasets.
+The notebooks are configured to run on various datasets. Contact Melanie Bruinooge, MD (📫 m.bruinooge@erasmusmc.nl) to discuss any questions on data configuration for your datasets.
 
 notebooks/teaching:
 
