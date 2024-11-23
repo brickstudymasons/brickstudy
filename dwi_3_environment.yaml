@@ -1,0 +1,22 @@
+# dwi environment
+
+
+name: wittier
+channels:
+  - conda-forge
+  
+dependencies:
+  - dipy=1.7.0
+  - fury=0.7.1
+  - jupyter
+  - jupyterlab
+  - matplotlib=3.5.3
+  - nilearn=0.7.0
+  - numexpr=2.8.4 
+  - osfclient=0.0.5
+  - python>=3.10
+  - pybids
+  
+# if environment does not resolve try installing everything but pybids, then `conda install conda-forge::pybids`
+
+
