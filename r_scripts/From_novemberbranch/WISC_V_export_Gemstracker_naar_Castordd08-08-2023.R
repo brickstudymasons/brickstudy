@@ -1,19 +1,15 @@
 #Laad de benodigde libraries
 library(readxl)             # Load the package into your R session
 library(writexl)
-library(readxl)
 library(dplyr)
  #Importeer excel file van export gemstracker WISCV
  # Replace "data.xlsx" with the actual file name and path if it's located in a different directory
- WISCV_gemstracker <- read_excel("Z:/Aida_experiment/zooi/WISC BRICK61_gems.xlsx")
-
+ WISCV_gemstracker <- read_excel("C:/Users/asofk/OneDrive/BRICK-study/BRICK-study/Data/BRICK_Scoreformulier_WISC-V-NL_startstop_gemstracker.xlsx")
  
  #show column names of the new df
  print(colnames(WISCV_gemstracker))
 
  #verander de column names van gemstracker naar castor, voor Baseline.
-
-#head(WISCV_gemstracker)
 
  # Change column names
  colnames(WISCV_gemstracker)[colnames(WISCV_gemstracker) == "gr2o_patient_nr"] <- "Participant Id"
@@ -27,9 +23,6 @@ library(dplyr)
  colnames(WISCV_gemstracker)[colnames(WISCV_gemstracker) == "WISCVOpmUit"] <- "Uitleg_Opmerkingen_WISC_V"
  
  
-
-#head(WISCV_gemstracker)
-
  #voeg extra kolom toe om alleen de verplichte BRICK-waarden te exporteren naar castor en niet de hele WISCV. Als je toch alle velden wil invullen, kan
  #je of alle velden een "o" geven, of dit handmatig wijzigen per participant, in de excel die op het einde gegenereerd wordt
 
@@ -49,9 +42,6 @@ library(dplyr)
  WISCV_gemstracker$Datum_WISC_V <- format(WISCV_gemstracker$Datum_WISC_V, "%d-%m-%Y")
  
  
-
-#head(WISCV_gemstracker)
-
  #2.Hierbij veranderen we de afnemer meerkeuze kolom naar een kolom met 1 waarde in de Castor dataframe ("Afnemer_WISC_V_W")
  # Let op! Dit moet aangepast worden als er meer afnemers bij komen, maar dan verandert de 6 in een 7 etc. Goed opletten als de labelsets worden aangepast in Castor en LS!
  
@@ -61,11 +51,6 @@ library(dplyr)
    column_name <- paste("AfnemerWISCV_SQ00", i, sep = "")
    WISCV_gemstracker$Afnemer_WISC_V[WISCV_gemstracker[column_name] == "Y"] <- i
  }
-
-#sapply(WISCV_gemstracker, class)
-
-#head(WISCV_gemstracker)
-
  
  #3. Hier veranderen we de waarden in de volgorde_NPO kolom voor in Castor
  
@@ -75,24 +60,20 @@ library(dplyr)
    WISCV_gemstracker$Volgorde_NPO_3[WISCV_gemstracker[, col_name] == "Y"] <- i
  }
  
-
  #4. Alle waarden onder kolom: Opmerkingen_WISC_V en WISC_V_voltooid gaan van Y naar 1 en van N naar 0
  
  # Convert "Y" to 1 and "N" to 0 in the "Opmerkingen_WISC_V" column
  WISCV_gemstracker$Opmerkingen_WISC_V[WISCV_gemstracker$Opmerkingen_WISC_V == "Y"] <- 1
  WISCV_gemstracker$Opmerkingen_WISC_V[WISCV_gemstracker$Opmerkingen_WISC_V == "N"] <- 0
  
-
  WISCV_gemstracker$WISC_V_voltooid[WISCV_gemstracker$WISC_V_voltooid == "Y"] <- 1
  WISCV_gemstracker$WISC_V_voltooid[WISCV_gemstracker$WISC_V_voltooid == "N"] <- 0
  
-
  ## Nog te testen: Haal het uur en de minuten uit twee afzonderlijke kolommen en zet ze samen in de start kolom.
  # Convert numeric columns to characters
  WISCV_gemstracker$StartWISCV_SQ001 <- as.character(WISCV_gemstracker$StartWISCV_SQ001)
  WISCV_gemstracker$StartWISCV_SQ002 <- as.character(WISCV_gemstracker$StartWISCV_SQ002)
  
-
  # Create Start_WISC_V column
  WISCV_gemstracker$Start_WISC_V <- paste(WISCV_gemstracker$StartWISCV_SQ001, WISCV_gemstracker$StartWISCV_SQ002, sep = ":")
  
@@ -100,7 +81,6 @@ library(dplyr)
  WISCV_gemstracker$StopWISCV_SQ001 <- as.character(WISCV_gemstracker$StopWISCV_SQ001)
  WISCV_gemstracker$StopWISCV_SQ002 <- as.character(WISCV_gemstracker$StopWISCV_SQ002)
  
-
  # Create Stop_WISC_V column
  WISCV_gemstracker$Stop_WISC_V <- paste(WISCV_gemstracker$StopWISCV_SQ001, WISCV_gemstracker$StopWISCV_SQ002, sep = ":")
 
@@ -111,14 +91,11 @@ library(dplyr)
           "Opmerkingen_WISC_V", "Uitleg_Opmerkingen_WISC_V", everything())
  
  
-
-#length(colnames(WISCV_gemstracker))
-
  #Elke field name is uniek. In de baseline meting, hebben bijn alle velden in Castor een _1. In FU1 en FU2 zal dit zeker _2 en _3 worden
  #behalve participant id en "Volgorde_NPO_3", moeten alle kolommen eraan geloven.
 
- # # Create a list to hold the new column names
- # new_column_names <- vector("character", length(names(WISCV_gemstracker)))
+ # Create a list to hold the new column names
+ new_column_names <- vector("character", length(names(WISCV_gemstracker)))
  
  #Delete de kolommen uit de gemstracker export die je niet nodig hebt (dplyr)
 
@@ -136,9 +113,6 @@ library(dplyr)
  # Remove the specified columns
  WISCV_gemstracker <- WISCV_gemstracker %>%
    select(-one_of(columns_to_remove))
-
-# Create a list to hold the new column names
-new_column_names <- vector("character", length(names(WISCV_gemstracker)))
  
  
  # Iterate through each column name
@@ -158,10 +132,11 @@ new_column_names <- vector("character", length(names(WISCV_gemstracker)))
  # Print the updated column names
  print(names(WISCV_gemstracker))
  
-
-
+ #exporteer nieuwe df naar excel file
+ write_xlsx(WISCV_gemstracker, path = "WISCV_gemstracker_poging12.xlsx")
  
- write.csv(WISCV_gemstracker, file = "Z:/Aida_experiment/zooi/WISCV_BRICK_061_castor.csv", row.names = FALSE)
+ # Export to CSV
+ write.csv(WISCV_gemstracker, file = "WISCV_gemstracker_poging5.csv", row.names = FALSE)
  
  
  

@@ -1,12 +1,10 @@
 #Laad de benodigde libraries
 library(readxl)             # Load the package into your R session
 library(writexl)
-library(readxl)
 library(dplyr)
  #Importeer excel file van export gemstracker WISCV
  # Replace "data.xlsx" with the actual file name and path if it's located in a different directory
- WISCV_gemstracker <- read_excel("Z:/Aida_experiment/zooi/WISC BRICK61_gems.xlsx")
-
+ WISCV_gemstracker <- read.csv("../../secret_data/WISC_V_BRICK_T0dd08042024.csv", sep=";")
  
  #show column names of the new df
  print(colnames(WISCV_gemstracker))
@@ -158,10 +156,11 @@ new_column_names <- vector("character", length(names(WISCV_gemstracker)))
  # Print the updated column names
  print(names(WISCV_gemstracker))
  
-
-
+ #exporteer nieuwe df naar excel file
+ write_xlsx(WISCV_gemstracker, path = "WISCV_gemstracker_poging_makeda.xlsx")
  
- write.csv(WISCV_gemstracker, file = "Z:/Aida_experiment/zooi/WISCV_BRICK_061_castor.csv", row.names = FALSE)
+ # Export to CSV
+ write.csv(WISCV_gemstracker, file = "WISCV_gemstracker_poging_makeda_csv.csv", row.names = FALSE)
  
  
  
